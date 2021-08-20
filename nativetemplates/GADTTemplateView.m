@@ -1,4 +1,4 @@
-// Copyright 2019 Google LLC
+// Copyright 2018-2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -11,8 +11,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-//  Copyright © 2018 Google. All rights reserved.
 
 #import "GADTTemplateView.h"
 #import <QuartzCore/QuartzCore.h>
@@ -62,8 +60,6 @@ static NSString* const GADTBlue = @"#5C84F0";
 
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-
-
     _rootView = [NSBundle.mainBundle loadNibNamed:NSStringFromClass([self class])
                                             owner:self
                                           options:nil]
@@ -107,8 +103,8 @@ static NSString* const GADTBlue = @"#5C84F0";
   [self.mediaView sizeToFit];
   if ([self styleForKey:GADTNativeTemplateStyleKeyCornerRadius]) {
     float roundedCornerRadius =
-    ((NSNumber*)[self styleForKey:GADTNativeTemplateStyleKeyCornerRadius]).floatValue;
-    
+        ((NSNumber *)[self styleForKey:GADTNativeTemplateStyleKeyCornerRadius]).floatValue;
+
     // Rounded corners
     self.iconView.layer.cornerRadius = roundedCornerRadius;
     self.iconView.clipsToBounds = YES;
@@ -118,118 +114,116 @@ static NSString* const GADTBlue = @"#5C84F0";
 
   // Fonts
   if ([self styleForKey:GADTNativeTemplateStyleKeyPrimaryFont]) {
-    ((UILabel*)_primaryTextView).font =
-    (UIFont*)[self styleForKey:GADTNativeTemplateStyleKeyPrimaryFont];
+    ((UILabel *)self.headlineView).font =
+        (UIFont *)[self styleForKey:GADTNativeTemplateStyleKeyPrimaryFont];
   }
- 
+
   if ([self styleForKey:GADTNativeTemplateStyleKeySecondaryFont]) {
-    ((UILabel*)_secondaryTextView).font =
-    (UIFont*)[self styleForKey:GADTNativeTemplateStyleKeySecondaryFont];
+    ((UILabel *)self.bodyView).font =
+        (UIFont *)[self styleForKey:GADTNativeTemplateStyleKeySecondaryFont];
   }
-  
+
   if ([self styleForKey:GADTNativeTemplateStyleKeyTertiaryFont]) {
-    ((UILabel*)_tertiaryTextView).font =
-    (UIFont*)[self styleForKey:GADTNativeTemplateStyleKeyTertiaryFont];
+    ((UILabel *)self.advertiserView).font =
+        (UIFont *)[self styleForKey:GADTNativeTemplateStyleKeyTertiaryFont];
   }
 
   if ([self styleForKey:GADTNativeTemplateStyleKeyCallToActionFont]) {
-    ((UIButton*)self.callToActionView).titleLabel.font =
-    (UIFont*)[self styleForKey:GADTNativeTemplateStyleKeyCallToActionFont];
+    ((UIButton *)self.callToActionView).titleLabel.font =
+        (UIFont *)[self styleForKey:GADTNativeTemplateStyleKeyCallToActionFont];
   }
-  
+
   // Font colors
   if ([self styleForKey:GADTNativeTemplateStyleKeyPrimaryFontColor])
-  ((UILabel*)_primaryTextView).textColor =
-      (UIColor*)[self styleForKey:GADTNativeTemplateStyleKeyPrimaryFontColor];
-  
+    ((UILabel *)self.headlineView).textColor =
+        (UIColor *)[self styleForKey:GADTNativeTemplateStyleKeyPrimaryFontColor];
+
   if ([self styleForKey:GADTNativeTemplateStyleKeySecondaryFontColor]) {
-    ((UILabel*)_secondaryTextView).textColor =
-    (UIColor*)[self styleForKey:GADTNativeTemplateStyleKeySecondaryFontColor];
+    ((UILabel *)self.bodyView).textColor =
+        (UIColor *)[self styleForKey:GADTNativeTemplateStyleKeySecondaryFontColor];
   }
 
   if ([self styleForKey:GADTNativeTemplateStyleKeyTertiaryFontColor]) {
-    ((UILabel*)_tertiaryTextView).textColor =
-    (UIColor*)[self styleForKey:GADTNativeTemplateStyleKeyTertiaryFontColor];
+    ((UILabel *)self.advertiserView).textColor =
+        (UIColor *)[self styleForKey:GADTNativeTemplateStyleKeyTertiaryFontColor];
   }
- 
+
   if ([self styleForKey:GADTNativeTemplateStyleKeyCallToActionFontColor]) {
-    [((UIButton*)self.callToActionView)
-     setTitleColor:(UIColor*)[self styleForKey:GADTNativeTemplateStyleKeyCallToActionFontColor]
-     forState:UIControlStateNormal];
+    [((UIButton *)self.callToActionView)
+        setTitleColor:(UIColor *)[self styleForKey:GADTNativeTemplateStyleKeyCallToActionFontColor]
+             forState:UIControlStateNormal];
   }
 
   // Background colors
   if ([self styleForKey:GADTNativeTemplateStyleKeyPrimaryBackgroundColor]) {
-    ((UILabel*)_primaryTextView).backgroundColor =
-    (UIColor*)[self styleForKey:GADTNativeTemplateStyleKeyPrimaryBackgroundColor];
+    ((UILabel *)self.headlineView).backgroundColor =
+        (UIColor *)[self styleForKey:GADTNativeTemplateStyleKeyPrimaryBackgroundColor];
   }
-  
+
   if ([self styleForKey:GADTNativeTemplateStyleKeySecondaryBackgroundColor]) {
-    ((UILabel*)_secondaryTextView).backgroundColor =
-    (UIColor*)[self styleForKey:GADTNativeTemplateStyleKeySecondaryBackgroundColor];
-
+    ((UILabel *)self.bodyView).backgroundColor =
+        (UIColor *)[self styleForKey:GADTNativeTemplateStyleKeySecondaryBackgroundColor];
   }
-  
+
   if ([self styleForKey:GADTNativeTemplateStyleKeyTertiaryBackgroundColor]) {
-    ((UILabel*)_tertiaryTextView).backgroundColor =
-    (UIColor*)[self styleForKey:GADTNativeTemplateStyleKeyTertiaryBackgroundColor];
+    ((UILabel *)self.advertiserView).backgroundColor =
+        (UIColor *)[self styleForKey:GADTNativeTemplateStyleKeyTertiaryBackgroundColor];
   }
-  
+
   if ([self styleForKey:GADTNativeTemplateStyleKeyCallToActionBackgroundColor]) {
-    ((UIButton*)self.callToActionView).backgroundColor =
-    (UIColor*)[self styleForKey:GADTNativeTemplateStyleKeyCallToActionBackgroundColor];
+    ((UIButton *)self.callToActionView).backgroundColor =
+        (UIColor *)[self styleForKey:GADTNativeTemplateStyleKeyCallToActionBackgroundColor];
   }
-  
+
   if ([self styleForKey:GADTNativeTemplateStyleKeyMainBackgroundColor]) {
-    self.backgroundColor = (UIColor*)[self styleForKey:GADTNativeTemplateStyleKeyMainBackgroundColor];
+    self.backgroundColor =
+        (UIColor *)[self styleForKey:GADTNativeTemplateStyleKeyMainBackgroundColor];
   }
-  
-  if (_backgroundView && [self styleForKey:GADTNativeTemplateStyleKeyPrimaryBackgroundColor]) {
-    _backgroundView.backgroundColor =
-    (UIColor*)[self styleForKey:GADTNativeTemplateStyleKeyPrimaryBackgroundColor];
-  }
- 
 }
-
-/// Styles the Ad Badge according to best practices.
 - (void)styleAdBadge {
-  _adBadge.layer.borderColor = _adBadge.textColor.CGColor;
-  _adBadge.layer.borderWidth = 1.0;
-  _adBadge.layer.cornerRadius = 3.0;
+  UILabel *adBadge = self.adBadge;
+  adBadge.layer.borderColor = adBadge.textColor.CGColor;
+  adBadge.layer.borderWidth = 1.0;
+  adBadge.layer.cornerRadius = 3.0;
 }
 
-- (void)setStyles:(NSDictionary<GADTNativeTemplateStyleKey, NSObject*>*)styles {
+- (void)setStyles:(NSDictionary<GADTNativeTemplateStyleKey, NSObject *> *)styles {
   _styles = [styles copy];
   [self applyStyles];
 }
 
-- (void)setNativeAd:(GADUnifiedNativeAd*)nativeAd {
-  [super setNativeAd:nativeAd];
-  self.headlineView = _primaryTextView;
-  NSString* adBody = nativeAd.body;
-  NSString* cta = nativeAd.callToAction;
-  NSString* headline = nativeAd.headline;
-  NSString* tertiaryText;
+- (void)setNativeAd:(GADNativeAd *)nativeAd {
+  ((UILabel *)self.headlineView).text = nativeAd.headline;
 
-  if (nativeAd.store.length && !nativeAd.advertiser.length) {
-    // Ad has store but not advertiser
-    self.storeView = _tertiaryTextView;
-    tertiaryText = nativeAd.store;
-  } else if (!nativeAd.store.length && nativeAd.advertiser.length) {
+  // Some of the assets are not guaranteed to be present. This is to check
+  // that they are before showing or hiding them.
+  ((UIImageView *)self.iconView).image = nativeAd.icon.image;
+  self.iconView.hidden = nativeAd.icon ? NO : YES;
+
+  [((UIButton *)self.callToActionView) setTitle:nativeAd.callToAction
+                                       forState:UIControlStateNormal];
+
+  // Either show the advertiser an app has, or show the store of the ad.
+  if (nativeAd.advertiser && !nativeAd.store) {
     // Ad has advertiser but not store
-    self.advertiserView = _tertiaryTextView;
-    tertiaryText = nativeAd.advertiser;
-  } else if (!nativeAd.store.length && !nativeAd.advertiser.length) {
+    self.storeView.hidden = YES;
+    ((UILabel *)self.advertiserView).text = nativeAd.advertiser;
+    self.advertiserView.hidden = NO;
+  } else if (nativeAd.store && !nativeAd.advertiser) {
+    // Ad has store but not advertiser
+    self.advertiserView.hidden = YES;
+    ((UILabel *)self.storeView).text = nativeAd.store;
+    self.storeView.hidden = NO;
+  } else if (nativeAd.advertiser && nativeAd.store) {
     // Ad has both store and advertiser, default to showing advertiser.
-    self.advertiserView = _tertiaryTextView;
-    tertiaryText = nativeAd.advertiser;
+    self.storeView.hidden = YES;
+    ((UILabel *)self.advertiserView).text = nativeAd.advertiser;
+    self.advertiserView.hidden = NO;
   }
 
-  ((UILabel*)_primaryTextView).text = headline;
-  ((UILabel*)_tertiaryTextView).text = tertiaryText;
-  [((UIButton*)self.callToActionView) setTitle:cta forState:UIControlStateNormal];
-  // Body text
-  // We either show the number of stars an app has, or show the body of the ad.
+  // Either show the number of stars an app has, or show the body of the ad.
+  // If there is a starRating then starRatingView is shown and bodyView is hidden
+  // otherwise, starRatingView is hidden and bodyView is filled.
   // Use the unicode characters for filled in or empty stars.
   if (nativeAd.starRating.floatValue > 0) {
     NSMutableString* stars = [[NSMutableString alloc] initWithString:@""];
@@ -242,19 +236,17 @@ static NSString* const GADTBlue = @"#5C84F0";
       NSString* emptyStar = [NSString stringWithUTF8String:"\u2606"];
       [stars appendString:emptyStar];
     }
-    adBody = stars;
-    self.starRatingView = _secondaryTextView;
+    ((UILabel *)self.starRatingView).text = stars;
+    self.bodyView.hidden = YES;
+    self.starRatingView.hidden = NO;
   } else {
-    self.bodyView = _secondaryTextView;
+    self.starRatingView.hidden = YES;
+    ((UILabel *)self.bodyView).text = nativeAd.body;
+    self.bodyView.hidden = NO;
   }
 
-  ((UILabel*)_secondaryTextView).text = adBody;
-  
-  if (nativeAd.icon) {
-    ((UIImageView*)self.iconView).image = nativeAd.icon.image;
-  } 
   [self.mediaView setMediaContent:nativeAd.mediaContent];
-  
+  [super setNativeAd:nativeAd];
 }
 
 - (void)addHorizontalConstraintsToSuperviewWidth {
@@ -263,11 +255,11 @@ static NSString* const GADTBlue = @"#5C84F0";
   if (self.superview) {
     UIView* child = self;
     [self.superview
-     addConstraints:[NSLayoutConstraint
-                     constraintsWithVisualFormat:@"H:|[child]|"
-                     options:0
-                     metrics:nil
-                     views:NSDictionaryOfVariableBindings(child)]];
+        addConstraints:[NSLayoutConstraint
+                           constraintsWithVisualFormat:@"H:|[child]|"
+                                               options:0
+                                               metrics:nil
+                                                 views:NSDictionaryOfVariableBindings(child)]];
   }
 }
 
