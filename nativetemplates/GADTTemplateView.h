@@ -84,7 +84,7 @@ extern GADTNativeTemplateStyleKey const GADTNativeTemplateStyleKeyCornerRadius;
 
 /// The super class for every template object.
 /// This class has the majority of all layout and styling logic.
-@interface GADTTemplateView : GADUnifiedNativeAdView
+@interface GADTTemplateView : GADNativeAdView
 @property(nonatomic, copy) NSDictionary<GADTNativeTemplateStyleKey, NSObject*>* styles;
 @property(weak) IBOutlet UILabel* primaryTextView;
 @property(weak) IBOutlet UILabel* secondaryTextView;

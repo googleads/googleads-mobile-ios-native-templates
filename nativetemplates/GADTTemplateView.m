@@ -203,7 +203,7 @@ static NSString* const GADTBlue = @"#5C84F0";
   [self applyStyles];
 }
 
-- (void)setNativeAd:(GADUnifiedNativeAd*)nativeAd {
+- (void)setNativeAd:(GADNativeAd*)nativeAd {
   [super setNativeAd:nativeAd];
   self.headlineView = _primaryTextView;
   NSString* adBody = nativeAd.body;
