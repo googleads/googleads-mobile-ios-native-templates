@@ -80,7 +80,6 @@ static NSString* const GADTBlue = @"#5C84F0";
                                                metrics:nil
                                                  views:NSDictionaryOfVariableBindings(_rootView)]];
     [self applyStyles];
-    [self styleAdBadge];
   }
   return self;
 }
@@ -179,12 +178,16 @@ static NSString* const GADTBlue = @"#5C84F0";
     self.backgroundColor =
         (UIColor *)[self styleForKey:GADTNativeTemplateStyleKeyMainBackgroundColor];
   }
+
+  [self styleAdBadge];
 }
+
 - (void)styleAdBadge {
   UILabel *adBadge = self.adBadge;
   adBadge.layer.borderColor = adBadge.textColor.CGColor;
   adBadge.layer.borderWidth = 1.0;
   adBadge.layer.cornerRadius = 3.0;
+  adBadge.layer.masksToBounds = YES;
 }
 
 - (void)setStyles:(NSDictionary<GADTNativeTemplateStyleKey, NSObject *> *)styles {
